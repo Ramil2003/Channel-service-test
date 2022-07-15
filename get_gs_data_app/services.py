@@ -1,8 +1,7 @@
 import gspread
-
+from django.conf import settings
 from typing import Any
 
-from django.conf import settings
 from .models import SheetsData
 
 
@@ -32,4 +31,9 @@ def get_data_from_gs() -> list[dict]:
 
 
 def upload_data_to_db():
+    """
+
+    :rtype: object
+    """
     pass
+

@@ -6,5 +6,5 @@ from .models import SheetsData
 class DataListView(ListView):
     model = SheetsData
     context_object_name = 'datas'
-    template_name = 'templates/index.html'
+    template_name = 'index.html'
 
