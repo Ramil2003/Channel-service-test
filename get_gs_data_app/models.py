@@ -6,3 +6,6 @@ class SheetsData(models.Model):
     cost_dol = models.IntegerField(blank=False)
     cost_rub = models.IntegerField(blank=False)
     delivery_time = models.DateTimeField()
+
+    def __str__(self):
+        return f'{self.order_num}'
