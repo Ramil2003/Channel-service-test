@@ -3,6 +3,8 @@ version: "3.8"
 services:
    redis:
       image: redis:alpine
+      ports:
+         - "6379:6379"
       container_name: redis_service_channel
    db:
       image: postgres
@@ -26,24 +28,24 @@ services:
    celery_worker:
       restart: always
       build: .
-      command: celery -A channel_service -l INFO
+      command: celery -A channel_service_test worker -l INFO
       volumes:
          - .:/django
       container_name: celery_work_serv_chan
       depends_on:
-         - redis
          - db
+         - redis
          - web
    celery_beat:
       restart: always
       build: .
-      command: celery -A channel_service beat
+      command: celery -A channel_service_test beat
       volumes:
          - .:/django
       container_name: celery_beat_serv_chan
       depends_on:
-         - redis
          - db
+         - redis
          - web
          - celery_worker
 
