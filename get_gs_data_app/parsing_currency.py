@@ -17,7 +17,6 @@ def get_current_dollar() -> float | int:
         if data.status_code == 200:
             dollar = ET.fromstring(data.text)
             return float(dollar[10][4].text.replace(',', '.'))
-        else:
-            return 0
+        return 0
     except requests.exceptions.HTTPError as e:
         return 0
