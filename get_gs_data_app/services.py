@@ -3,6 +3,7 @@ from django.conf import settings
 from typing import Any
 
 from .models import SheetsData
+from .parsing_currency import get_current_dollar
 
 
 def authentication() -> Any:
@@ -28,10 +29,6 @@ def get_data_from_gs() -> list[dict]:
     auth = authentication()
     sh = auth.open('Copy of test')
     return sh.sheet1.get_all_records()
-
-
-def get_current_dollar():
-    pass
 
 
 def upload_data_to_db():
