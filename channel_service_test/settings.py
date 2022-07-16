@@ -132,7 +132,13 @@ STATIC_URL = '/static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
+# Custom added credentials
 JSON_CONFIG = 'channel_service_test/config/silver-wall-356411-bf0fc5a29661.json'
-
 PARSING_SITE = 'https://www.cbr.ru/scripts/XML_daily.asp'
+
+# Setup celery
+CELERY_BROKER_URL = 'redis://redis:6379'
+CELERY_RESULT_BACKEND = 'redis://redis:6379'
+
+
 
