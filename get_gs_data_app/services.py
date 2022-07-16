@@ -30,10 +30,26 @@ def get_data_from_gs() -> list[dict]:
     return sh.sheet1.get_all_records()
 
 
+def get_current_dollar():
+    pass
+
+
 def upload_data_to_db():
     """
 
     :rtype: object
     """
-    pass
+    data = get_data_from_gs()
+    # SheetsData.objects.update_or_create(order_num=, cost_dol=, cost_rub=, delivery_time=)
+    order_num = (d['заказ №'] for d in data)
+    cost_dol = (d['стоимость,$'] for d in data)
+    # cost_rub
+    delivery_time = (d['срок поставки'] for d in data)
+
+
+
+# TODO:
+# 1. upload_data_to_db
+# 2. work with templates
+# 3. Add Celery for gs
 
