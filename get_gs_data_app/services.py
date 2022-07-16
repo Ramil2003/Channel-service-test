@@ -31,9 +31,11 @@ def get_data_from_gs() -> list[dict]:
     return sh.sheet1.get_all_records()
 
 
-def upload_data_to_db():
+def upload_data_to_db() -> None:
     """
+    Upload data to DB
 
+    :return: None
     :rtype: object
     """
     data = get_data_from_gs()

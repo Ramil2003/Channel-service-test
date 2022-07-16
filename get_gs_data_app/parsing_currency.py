@@ -2,13 +2,20 @@ import requests
 import xml.etree.ElementTree as ET
 
 
-def get_current_dollar() -> float:
+def get_current_dollar() -> float | int:
     """
-    Get current dollar from XMl file in https://www.cbr.ru/scripts/XML_daily.asp
+    Get current dollar from XML file in https://www.cbr.ru/scripts/XML_daily.asp
 
     :return: Current dollar
     :rtype: float
+    :except requests.exceptions.HTTPError: Returns error if something went wrong
     """
-    data = requests.get('https://www.cbr.ru/scripts/XML_daily.asp')
-    dollar = ET.fromstring(data.text)
-    return float(dollar[10][4].text.replace(',', '.'))
+    try:
+        data = requests.get('https://www.cbr.ru/scripts/XML_daily.asp')
+        if data.status_code == 200:
+            dollar = ET.fromstring(data.text)
+            return float(dollar[10][4].text.replace(',', '.'))
+        else:
+            return 0
+    except requests.exceptions.HTTPError as e:
+        return 0
