@@ -39,16 +39,18 @@ def upload_data_to_db() -> None:
     :rtype: object
     """
     data = get_data_from_gs()
-    # SheetsData.objects.update_or_create(order_num=, cost_dol=, cost_rub=, delivery_time=)
+    dollar = get_current_dollar()
     order_num = (d['заказ №'] for d in data)
     cost_dol = (d['стоимость,$'] for d in data)
-    # cost_rub
     delivery_time = (d['срок поставки'] for d in data)
+    SheetsData.objects.update_or_create(order_num=order_num, cost_dol=cost_dol, cost_rub=cost_dol*dollar,
+                                               delivery_time=delivery_time)
 
 
 
 # TODO:
 # 1. upload_data_to_db
 # 2. work with templates
-# 3. Add Celery for gs
+# 4. Add celery and redis to docker-compose
+# 5. Add task for celery
 
