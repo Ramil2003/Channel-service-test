@@ -134,3 +134,5 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 JSON_CONFIG = 'channel_service_test/config/silver-wall-356411-bf0fc5a29661.json'
 
+PARSING_SITE = 'https://www.cbr.ru/scripts/XML_daily.asp'
+

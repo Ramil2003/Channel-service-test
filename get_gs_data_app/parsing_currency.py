@@ -1,6 +1,8 @@
 import requests
 import xml.etree.ElementTree as ET
 
+from django.conf import settings
+
 
 def get_current_dollar() -> float | int:
     """
@@ -11,7 +13,7 @@ def get_current_dollar() -> float | int:
     :except requests.exceptions.HTTPError: Returns error if something went wrong
     """
     try:
-        data = requests.get('https://www.cbr.ru/scripts/XML_daily.asp')
+        data = requests.get(settings.PARSING_SITE)
         if data.status_code == 200:
             dollar = ET.fromstring(data.text)
             return float(dollar[10][4].text.replace(',', '.'))
