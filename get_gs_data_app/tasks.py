@@ -18,11 +18,10 @@ def upload_data_to_db() -> None:
     arr = []
     for d in data:
         s = SheetsData(order_num=d['заказ №'],
-                    cost_dol=d['стоимость,$'],
-                    cost_rub=round(float(d['стоимость,$'] * dollar), 1),
-                    delivery_time=d['срок поставки'])
+                       cost_dol=d['стоимость,$'],
+                       cost_rub=round(float(d['стоимость,$'] * dollar), 1),
+                       delivery_time=d['срок поставки'])
         arr.append(s)
     SheetsData.objects.bulk_create(arr)
-
 
 # Доделать загрузку в бд
