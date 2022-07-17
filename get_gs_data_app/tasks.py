@@ -15,13 +15,8 @@ def upload_data_to_db() -> None:
     """
     data = _open_n_get_data_from_gs()
     dollar = _get_current_dollar()
-    arr = []
     for d in data:
-        s = SheetsData(order_num=d['заказ №'],
-                       cost_dol=d['стоимость,$'],
-                       cost_rub=round(float(d['стоимость,$'] * dollar), 1),
-                       delivery_time=d['срок поставки'])
-        arr.append(s)
-    SheetsData.objects.bulk_create(arr)
-
-# Доделать загрузку в бд
+        SheetsData.objects.update_or_create(order_num=d.get('заказ №', 0),
+                                            cost_dol=d.get('стоимость,$', 0),
+                                            cost_rub=round(float(d.get('стоимость,$', 0) * dollar), 1),
+                                            delivery_time=d.get('срок поставки', "00.00.00"))

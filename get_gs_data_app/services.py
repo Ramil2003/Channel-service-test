@@ -25,10 +25,3 @@ def _open_n_get_data_from_gs() -> list[dict]:
     auth = _authenticate()
     sh = auth.open('Copy of test')
     return sh.sheet1.get_all_records()
-
-# TODO:
-# 1. upload_data_to_db COMPLETE
-# 2. work with templates
-# 4. Add celery and redis to docker-compose COMPLETE
-# 5. Add task for celery COMPLETE
-
