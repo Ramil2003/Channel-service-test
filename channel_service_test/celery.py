@@ -11,8 +11,8 @@ app.config_from_object('django.conf:settings', namespace='CELERY')
 app.autodiscover_tasks()
 
 app.conf.beat_schedule = {
-    'upload_data_to_db': {
-        'task': 'get_gs_data_app.tasks.upload_data_to_db',
+    'work_with_db': {
+        'task': 'get_gs_data_app.tasks.work_with_db',
         'schedule': crontab(minute='*/1'),
     },
 }

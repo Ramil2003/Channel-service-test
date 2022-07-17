@@ -6,9 +6,11 @@ from .models import SheetsData
 
 
 @shared_task()
-def upload_data_to_db() -> None:
+def work_with_db() -> None:
     """
-    Upload data to DB
+    Get data from Google Sheets from _open_n_get_data_from_gs
+    Get current dollar from _get_current_dollar
+    And work with data in db (CUD)
 
     :return: None
     :rtype: None
