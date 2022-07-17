@@ -1,7 +1,7 @@
 from celery import shared_task
 
-from .parsing_currency import get_current_dollar
-from .services import get_data_from_gs
+from .parsing_currency import _get_current_dollar
+from .services import _open_n_get_data_from_gs
 from .models import SheetsData
 
 
@@ -11,11 +11,14 @@ def upload_data_to_db() -> None:
     Upload data to DB
 
     :return: None
-    :rtype: object
+    :rtype: None
     """
-    data = get_data_from_gs()
-    dollar = get_current_dollar()
-    order_num = [d['заказ №'] for d in data]
-    cost_dol = [d['стоимость,$'] * dollar for d in data]
-    delivery_time = [d['срок поставки'] for d in data]
-    pass
+    data = _open_n_get_data_from_gs()
+    dollar = _get_current_dollar()
+    for d in data:
+        SheetsData.objects.bulk_create([SheetsData(order_num=d['заказ №'],
+                                                   cost_dol=d['стоимость,$'],
+                                                   cost_rub=round(float(d['стоимость,$'] * dollar), 1),
+                                                   delivery_time=d['срок поставки'])])
+
+# Доделать загрузку в бд

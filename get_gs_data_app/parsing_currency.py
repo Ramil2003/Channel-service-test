@@ -4,7 +4,7 @@ import xml.etree.ElementTree as ET
 from django.conf import settings
 
 
-def get_current_dollar() -> float | int:
+def _get_current_dollar() -> float | int:
     """
     Get current dollar from XML file in https://www.cbr.ru/scripts/XML_daily.asp
 
@@ -18,5 +18,5 @@ def get_current_dollar() -> float | int:
             dollar = ET.fromstring(data.text)
             return float(dollar[10][4].text.replace(',', '.'))
         return 0
-    except requests.exceptions.HTTPError as e:
+    except (requests.exceptions.HTTPError, TypeError, ValueError):
         return 0
