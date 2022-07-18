@@ -7,21 +7,34 @@
     <link href="{% static 'css/style.css' %}" rel="stylesheet" />
 </head>
 <body>
-    <table class="table">
-        <tr class="table_tr head">
+    <header>
+        <div class="square"></div>
+    </header>
+    <table>
+        <tr>
           <th>№</th>
           <th>заказ, №</th>
           <th>стоимость,$</th>
+          <th>стоимость,₽</th>
           <th>срок поставки</th>
         </tr>
         {% for d in data_list %}
         <tr>
           <th> {{ forloop.counter }} </th>
-          <th> {{ d.order_num }}</th>
-          <th> {{ d.cost_dol }}</th>
-          <th> {{ d.delivery_time }}</th>
+          <th> {{ d.order_num }} </th>
+          <th> {{ d.cost_dol }} </th>
+          <th> {{ d.cost_rub }} </th>
+          <th> {{ d.delivery_time }} </th>
         </tr>
         {% endfor %}
+    </table>
+    <table>
+        <tr>
+            <th>Total</th>
+        </tr>
+        <tr>
+            <th></th>
+        </tr>
     </table>
 </body>
 </html>
