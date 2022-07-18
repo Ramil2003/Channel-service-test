@@ -1,10 +1,27 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <link href="{% static 'css/style.css' %}" rel="stylesheet" />
 </head>
 <body>
-    <h1>Здравствуйте! Сделал через Django, но React не владею, надеюсь на понимание</h1>
+    <table class="table">
+        <tr class="table_tr head">
+          <th>№</th>
+          <th>заказ, №</th>
+          <th>стоимость,$</th>
+          <th>срок поставки</th>
+        </tr>
+        {% for d in data_list %}
+        <tr>
+          <th> {{ forloop.counter }} </th>
+          <th> {{ d.order_num }}</th>
+          <th> {{ d.cost_dol }}</th>
+          <th> {{ d.delivery_time }}</th>
+        </tr>
+        {% endfor %}
+    </table>
 </body>
 </html>
