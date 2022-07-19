@@ -11,7 +11,7 @@
         <div class="square"></div>
     </header>
     <table>
-        <tr>
+        <tr class="tr__head">
           <th>№</th>
           <th>заказ, №</th>
           <th>стоимость,$</th>
@@ -20,19 +20,19 @@
         </tr>
         {% for d in data_list %}
         <tr>
-          <th> {{ forloop.counter }} </th>
-          <th> {{ d.order_num }} </th>
-          <th> {{ d.cost_dol }} </th>
-          <th> {{ d.cost_rub }} </th>
-          <th> {{ d.delivery_time }} </th>
+          <th class="th__main"> {{ forloop.counter }} </th>
+          <th class="th__main"> {{ d.order_num }} </th>
+          <th class="th__main"> {{ d.cost_dol }} </th>
+          <th class="th__main"> {{ d.cost_rub }} </th>
+          <th class="th__main"> {{ d.delivery_time }} </th>
         </tr>
         {% endfor %}
     </table>
     <table>
-        <tr>
+        <tr class="tr__head">
             <th>Total</th>
         </tr>
-        <tr>
+        <tr class="total">
             <th>{{ total }}</th>
         </tr>
     </table>

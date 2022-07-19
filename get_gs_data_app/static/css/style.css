@@ -2,21 +2,34 @@
 	padding: 0;
 	margin: 0;
 	border: 0;
+    font-family: Arial;
 }
 
 table {
+    font-weight: lighter;
     margin: auto;
-   width: 600px;
+    width: 600px;
 }
 
 table {
-   border: 1px solid grey;
+    color: #ffffff;
+    border: 1px solid grey;
 }
 
 th {
-   border: 1px solid grey;
+    border: 1px solid grey;
 }
 
-td {
-   border: 1px solid grey;
+.tr__head > th{
+    background-color: #25255e;
+}
+
+.th__main{
+    color: #000;
+    background-color: rgba(34, 34, 84, 0.25);
+}
+
+.total{
+    color: #25255e;
+    font-size: 22px;
 }
