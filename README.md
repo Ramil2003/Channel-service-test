@@ -48,3 +48,5 @@ docker-compose exec web python3 manage.py createsuperuser
 ```
 docker-compose down
 ```
+
+P.S **Создайте .env и пропишите данные для БД и SECRET_KEY**
