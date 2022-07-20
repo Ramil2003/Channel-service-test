@@ -16,7 +16,7 @@ def _get_current_dollar() -> float:
         data = requests.get(settings.PARSING_SITE)
         if data.status_code == 200:
             dollar = ET.fromstring(data.text)
-            return round(float(dollar[10][4].text.replace(',', '.')), 0)
+            return int(round(float(dollar[10][4].text.replace(',', '.')), 0))
         return 0
     except (requests.exceptions.HTTPError, TypeError, ValueError):
         return 0
