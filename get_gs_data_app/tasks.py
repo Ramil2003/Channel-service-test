@@ -18,9 +18,13 @@ def work_with_db() -> None:
     data = _open_n_get_data_from_gs()
     dollar = _get_current_dollar()
     SheetsData.objects.all().delete()
+    arr = []
     for d in data:
-        SheetsData.objects.create(order_num=d.get('заказ №', 0),
+        sheets = SheetsData(order_num=d.get('заказ №', 0),
                                   cost_dol=d.get('стоимость,$', 0),
                                   cost_rub=d.get('стоимость,$', 0) * dollar,
                                   delivery_time=d.get('срок поставки', "00.00.00"))
+        arr.append(sheets)
+    SheetsData.objects.bulk_create(arr)
+    arr.clear()
     data.clear()
