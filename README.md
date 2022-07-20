@@ -1,7 +1,5 @@
 # Channel-service-test
 
-**Тестовое задание Python**
-
 Функционал:
 
 - Получение данных из Google Sheets
