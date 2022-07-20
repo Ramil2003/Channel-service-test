@@ -21,11 +21,12 @@ def work_with_db() -> None:
     for d in data:
         SheetsData.objects.update_or_create(order_num=d.get('заказ №', 0),
                                             cost_dol=d.get('стоимость,$', 0),
-                                            cost_rub=d.get('стоимость,$', 0) * dollar,
+                                            cost_rub=d.get('стоимость,$',   ) * dollar,
                                             delivery_time=d.get('срок поставки', "00.00.00"))
         filtered_qs = SheetsData.objects.filter(order_num=d.get('заказ №', 0),
                                                 cost_dol=d.get('стоимость,$', 0),
                                                 cost_rub=d.get('стоимость,$', 0) * dollar,
                                                 delivery_time=d.get('срок поставки', "00.00.00"))
+    data.clear()
     if qs_all.difference(filtered_qs):
         filtered_qs.delete()
