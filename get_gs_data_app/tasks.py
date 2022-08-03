@@ -21,9 +21,9 @@ def work_with_db() -> None:
     arr = []
     for d in data:
         sheets = SheetsData(order_num=d.get('заказ №', 0),
-                            cost_dol=d.get('стоимость,$', 0),
-                            cost_rub=d.get('стоимость,$', 0) * dollar,
-                            delivery_time=d.get('срок поставки', "00.00.00"))
+                                  cost_dol=d.get('стоимость,$', 0),
+                                  cost_rub=d.get('стоимость,$', 0) * dollar,
+                                  delivery_time=d.get('срок поставки', "00.00.00"))
         arr.append(sheets)
     SheetsData.objects.bulk_create(arr)
     arr.clear()
