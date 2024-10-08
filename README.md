@@ -1,4 +1,4 @@
-# Channel-service-test
+# Google sheets django
 
 Функционал:
 
